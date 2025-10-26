@@ -50,15 +50,8 @@ Test accuracy: 0.9396
 # 1. Клонируйте репозиторий
 git clone https://github.com/D3vour3r69/CIFAR10_TEST_TASK
 # Зайдите в папку с репозиторием
-cd AI_TEST_TASK
-
-# 2. С помощью Git LFS, скопируйте обученную модель для быстроты. Можете так же обучить её сами
-git lfs pull
-
-# 3. Установить зависимости через Poetry
-poetry install
-
-# 4. Собираем и запускаем докер образ
+cd CIFAR10_TEST_TASK
+# 2. Собираем и запускаем докер образ
 docker build -t cifar10-api .
 docker run -p 8000:8000 cifar10-api
 ```
@@ -87,8 +80,8 @@ curl -X POST -F "file=@название_вашего_файла.jpg" http://loca
 
 # Если хотите использовать локально
 ```bash
-git clone [repo]
-cd cifar10-classification-api
+git clone https://github.com/D3vour3r69/CIFAR10_TEST_TASK
+cd CIFAR10_TEST_TASK
 git lfs install && git lfs pull
 poetry install
 poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload

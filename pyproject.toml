@@ -39,3 +39,4 @@ priority = "explicit"
 [tool.poetry.dependencies]
 torch = {source = "pytorch-cu130"}
 torchaudio = {source = "pytorch-cu130"}
+torchvision = { source = "pytorch-cu130" }
