@@ -5,14 +5,15 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
+    git \
+    git-lfs\
     && rm -rf /var/lib/apt/lists/*
 
-
-COPY pyproject.toml ./
+COPY pyproject.toml poetry.lock ./
 
 RUN pip install poetry && \
     poetry config virtualenvs.create false && \
-    poetry install --no-dev
+    poetry install --no-root
 
 COPY app/ ./app/
 COPY models/ ./models/

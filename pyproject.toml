@@ -5,7 +5,6 @@ description = ""
 authors = [
     {name = "Sergey Leonovich",email = "put_theport@mail.ru"}
 ]
-readme = "README.md"
 requires-python = ">=3.11, <3.15"
 dependencies = [
     "numpy (>=2.3.4,<3.0.0)",
@@ -33,6 +32,7 @@ build-backend = "poetry.core.masonry.api"
 [[tool.poetry.source]]
 name = "pytorch-cu130"
 url = "https://download.pytorch.org/whl/cu130"
+
 priority = "explicit"
 
 
