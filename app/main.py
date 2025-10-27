@@ -13,7 +13,7 @@ app = FastAPI(title="CIFAR-10 Классификатор API")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = reznet18_for_cifar10()
-model.load_state_dict(torch.load('../models/cifar_reznet_best_new.pth', map_location=device))
+model.load_state_dict(torch.load('models/cifar_reznet_best_new.pth', map_location=device))
 model.to(device)
 model.eval()
 
