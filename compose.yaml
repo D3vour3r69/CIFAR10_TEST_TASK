@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  cifar10-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    container_name: cifar10-api
+    restart: unless-stopped
+    environment:
+      - PYTHONPATH=/app
