@@ -1,11 +1,15 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
+from pydantic import BaseModel
+from typing import Dict
 from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse
 import torch
 import torchvision.transforms as transforms
 from PIL import Image
 import io
 import json
 
+from .schemas import PredictionResponse, HealthResponse, ClassesResponse, ErrorResponse
 from .model_loader import reznet18_for_cifar10 ##- Если не работает нижняя, на локальном у меня работало
 ##from model_loader import reznet18_for_cifar10
 
@@ -26,7 +30,10 @@ transform = transforms.Compose([
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 
-@app.post("/predict")
+@app.post("/predict", response_model=PredictionResponse,
+          responses={400: {"model": ErrorResponse},
+                     500: {"model": ErrorResponse}})
+
 async def predict(file: UploadFile = File(...)):
 
     if not file.content_type.startswith('image/'):
@@ -55,14 +62,18 @@ async def predict(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
     return {"message": "CIFAR-10 Классификатор API"}
 
 
-@app.get("/classes")
+@app.get("/health", response_model=HealthResponse)
+async def health_check():
+    return HealthResponse(status="healthy")
+
+@app.get("/classes", response_model=ClassesResponse)
 async def get_classes():
-    return {"classes": classes}
+    return ClassesResponse(classes=list(classes))
 
 
 if __name__ == "__main__":
