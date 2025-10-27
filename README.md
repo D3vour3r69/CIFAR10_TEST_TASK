@@ -52,8 +52,7 @@ git clone https://github.com/D3vour3r69/CIFAR10_TEST_TASK
 # Зайдите в папку с репозиторием
 cd CIFAR10_TEST_TASK
 # 2. Собираем и запускаем докер образ
-docker build -t cifar10-api .
-docker run -p 8000:8000 cifar10-api
+docker compose up -d --build
 ```
 
 ##  Использование API
@@ -72,13 +71,13 @@ curl -X POST -F "file=@название_вашего_файла.jpg" http://loca
 ```
 ## Более простое использование API
 Зайти по адресу localhost:8000/docs
-- **Зайти по адрессу localhost:8000/docs**
+- **Зайти по адрессу https://localhost:8000/docs**
 - **Выбрать вкладку predict**
 - **Нажать try it out**
 - **Загрузить картинку, можно просто перетащить на окно**
 - **Получить предсказание модели**
 
-# Если хотите использовать локально
+# Если хотите использовать локально(Но тогда придётся изменить пути)
 ```bash
 git clone https://github.com/D3vour3r69/CIFAR10_TEST_TASK
 cd CIFAR10_TEST_TASK
