@@ -6,8 +6,8 @@ from PIL import Image
 import io
 import json
 
-#from app.model_loader import reznet18_for_cifar10 - Если не работает нижняя, на локальном у меня работало
-from model_loader import reznet18_for_cifar10
+from app.model_loader import reznet18_for_cifar10 ##- Если не работает нижняя, на локальном у меня работало
+##from model_loader import reznet18_for_cifar10
 
 app = FastAPI(title="CIFAR-10 Классификатор API")
 
